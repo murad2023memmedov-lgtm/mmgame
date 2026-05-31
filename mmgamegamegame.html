@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<title>MM GAMES</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at bottom left,
+        #ffffff 0%,
+        #5a00ff 35%,
+        #1a0033 70%,
+        #000000 100%);
+    overflow: hidden;
+}
+.title {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 75px;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: #fff;
+    text-shadow: 0 0 10px #a855ff, 0 0 20px #7c3aed, 0 0 40px #4c1d95;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin-top: 100px;
+}
+.box {
+    width: 250px;
+    height: 200px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.section {
+    display: none;
+    text-align: center;
+    margin-top: 60px;
+    color: white;
+    font-size: 42px;
+    font-weight: bold;
+}
+.back {
+    margin-top: 30px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #a855ff;
+    color: white;
+    cursor: pointer;
+}
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+}
+/* oyun grid */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+    justify-items: center;
+    margin-top: 30px;
+}
+.game-card {
+    width: 180px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 12px;
+    transition: 0.3s;
+}
+.game-card img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #a855ff;
+    transition: 0.4s ease;
+}
+.game-card h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+    color: #fff;
+}
+.game-card p {
+    font-size: 14px;
+    color: #ccc;
+}
+.game-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px #7c3aed;
+    background: rgba(255,255,255,0.1);
+}
+</style>
+<style>
+    /* LET'S PLAY başlığına neon animasiya */
+.title {
+    animation: glowTitle 3s infinite alternate;
+}
+
+@keyframes glowTitle {
+    from {
+        text-shadow: 0 0 10px #a855ff, 0 0 20px #7c3aed;
+        transform: scale(1);
+    }
+    to {
+        text-shadow: 0 0 25px #ffcc00, 0 0 40px #ffaa00;
+        transform: scale(1.05);
+    }
+}
+
+/* Oyun kartlarına hover effekti */
+.game-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px #ff00ff;
+    background: rgba(255,255,255,0.15);
+}
+
+/* Şəkil hover zamanı böyüyür və parlayır */
+.game-card:hover img {
+    transform: scale(1.2) rotate(2deg);
+    box-shadow: 0 0 25px #ff00ff, 0 0 40px #7c3aed;
+    filter: brightness(1.2);
+}
+
+/* Başlıq və təsvir hover zamanı neon effekti */
+.game-card h3, .game-card p {
+    transition: 0.3s;
+}
+.game-card:hover h3 {
+    color: #ffcc00;
+    text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffaa00;
+}
+.game-card:hover p {
+    color: #fff;
+}
+
+/* Overlay effekti (PLAY yazısı) */
+.game-card::after {
+    content: "▶ PLAY";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    background: rgba(0,0,0,0.6);
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.game-card:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+</style>
+<style>
+    /* LET'S PLAY başlığına neon animasiya */
+.title {
+    animation: glowTitle 3s infinite alternate;
+}
+
+@keyframes glowTitle {
+    from {
+        text-shadow: 0 0 10px #a855ff, 0 0 20px #7c3aed;
+        transform: scale(1);
+    }
+    to {
+        text-shadow: 0 0 25px #ffcc00, 0 0 40px #ffaa00;
+        transform: scale(1.05);
+    }
+}
+
+/* 1 PLAYER və 2 PLAYER box-lara hover effekti */
+.box {
+    transition: 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.box:hover {
+    transform: scale(1.1) rotate(2deg);
+    background: linear-gradient(135deg, #fff, #e0d4ff);
+    color: #1a0033;
+    box-shadow: 0 0 25px #ffcc00, 0 0 50px #ffaa00;
+}
+
+/* Hover zamanı overlay yazısı */
+.box::after {
+    content: "▶ OPEN";
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    background: rgba(0,0,0,0.6);
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.box:hover::after {
+    transform: translateX(-50%) scale(1);
+}
+
+</style>
+</head>
+<body>
+
+<div id="menu">
+    <div class="title">LET'S PLAY</div>
+    <div class="container">
+        <div class="box" onclick="openPage('one')">🎮<br>1 PLAYER GAMES</div>
+        <div class="box" onclick="openPage('two')">👥<br>2 PLAYER GAMES</div>
+    </div>
+</div>
+
+<!-- 1 PLAYER bölməsi -->
+<div id="one" class="section">
+    🎮 1 PLAYER GAMES
+    <div class="games-grid">
+        <a href="#snake" class="game-card" onclick="openGame('snake')">
+            <img src="snake.png" alt="Snake">
+            <h3>Snake</h3>
+            <p>Klassik ilan oyunu</p>
+        </a>
+        <a href="#flappy" class="game-card" onclick="openGame('flappy')">
+            <img src="flappy.png" alt="Flappy Bird">
+            <h3>Flappy Bird</h3>
+            <p>Quşu borulardan keçir</p>
+        </a>
+        <a href="#tetris" class="game-card" onclick="openGame('tetris')">
+            <img src="tetris.png" alt="Tetris">
+            <h3>Tetris</h3>
+            <p>Blokları düzərək xətləri sil</p>
+        </a>
+        <a href="#pong" class="game-card" onclick="openGame('pong')">
+            <img src="pong.png" alt="Pong">
+            <h3>Pong</h3>
+            <p>İki raketlə top oyunu</p>
+        </a>
+        <a href="#pacman" class="game-card" onclick="openGame('pacman')">
+            <img src="pacman.png" alt="Pac-Man">
+            <h3>Pac-Man</h3>
+            <p>Labirintdə nöqtələri ye</p>
+        </a>
+        <!-- buraya 15 oyun daha əlavə edə bilərsən -->
+    </div>
+    <button class="back" onclick="back()">BACK</button>
+</div>
+
+<!-- 2 PLAYER bölməsi -->
+<div id="two" class="section">
+    👥 2 PLAYER GAMES
+    <button class="back" onclick="back()">BACK</button>
+</div>
+
+<!-- Oyun səhifələri -->
+<div id="snake" class="section">
+    <h2>Snake Oyunu</h2>
+    <button class="back" onclick="backToGames()">BACK</button>
+</div>
+<div id="flappy" class="section">
+    <h2>Flappy Bird Oyunu</h2>
+    <button class="back" onclick="backToGames()">BACK</button>
+</div>
+<div id="tetris" class="section">
+    <h2>Tetris Oyunu</h2>
+    <button class="back" onclick="backToGames()">BACK</button>
+</div>
+<div id="pong" class="section">
+    <h2>Pong Oyunu</h2>
+    <button class="back" onclick="backToGames()">BACK</button>
+</div>
+<div id="pacman" class="section">
+    <h2>Pac-Man Oyunu</h2>
+    <button class="back" onclick="backToGames()">BACK</button>
+</div>
+
+<footer>© 2026 Murad Games</footer>
+
+<script>
+function openPage(id) {
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("one").style.display = "none";
+    document.getElementById("two").style.display = "none";
+    document.getElementById(id).style.display = "block";
+}
+function back() {
+    document.getElementById("menu").style.display = "block";
+    document.getElementById("one").style.display = "none";
+    document.getElementById("two").style.display = "none";
+    document.getElementById("snake").style.display = "none";
+    document.getElementById("flappy").style.display = "none";
+    document.getElementById("tetris").style.display = "none";
+    document.getElementById("pong").style.display = "none";
+    document.getElementById("pacman").style.display = "none";
+}
+function openGame(gameId) {
+    document.getElementById("one").style.display = "none";
+    document.getElementById(gameId).style.display = "block";
+}
+function backToGames() {
+    document.getElementById("one").style.display = "block";
+    document.getElementById("snake").style.display = "none";
+    document.getElementById("flappy").style.display = "none";
+    document.getElementById("tetris").style.display = "none";
+    document.getElementById("pong").style.display = "none";
+    document.getElementById("pacman").style.display = "none";
+}
+</script>
+
+</body>
+</html>
